@@ -26,7 +26,7 @@ export default function Page() {
     
     const handleLogin=async(e:any)=>{
         e.preventDefault()
-        const res = await fetch(`api/auth/login`, {
+        const res = await fetch(`http://localhost:3000/api/auth/login`, {
             method: "POST",
             headers: {
               Accept: "application/json",
@@ -36,7 +36,8 @@ export default function Page() {
           });
             const response=await res.json();
             if(response.status==200){
-                alert(response.error)
+                alert(response.error);
+                localStorage.setItem("login","true");
                 router.push('/')
 
             }
