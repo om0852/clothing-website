@@ -1,7 +1,9 @@
+import { useRouter } from "next/navigation"
 import "../css/component.css"
 
 
 export default function Header(){
+  const router =useRouter();
     return(
       <div className="header-main">
 
@@ -22,7 +24,7 @@ export default function Header(){
 
         <div className="header-user-actions">
 
-          <button className="action-btn">
+          <button onClick={(e)=>{ router.push("/page/profile")}} className="action-btn">
           <img width="40" height="40" src="https://img.icons8.com/pastel-glyph/64/person-male--v2.png" alt="person-male--v2"/>
           </button>
 
