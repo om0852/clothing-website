@@ -3,94 +3,44 @@ import "../css/component.css"
 
 export default function Header(){
     return(
-        <header className="header" data-header>
-    <div className="container">
+      <div className="header-main">
 
-      <div className="overlay" data-overlay></div>
+      <div className="header-container">
 
-      <a href="#" className="logo">
-        <img src="./assets/images/logo.svg" width="160" height="30" alt="Footcap logo"/>
-      </a>
-
-      <button className="nav-open-btn" data-nav-open-btn aria-label="Open Menu">
-      </button>
-
-      <nav className="navbar" data-navbar>
-
-        <button className="nav-close-btn" data-nav-close-btn aria-label="Close Menu">
-        </button>
-
-        <a href="#" className="logo">
-          <img src="./assets/images/logo.svg" width="190" height="30" alt="Footcap logo"/>
+        <a href="#" className="header-logo">
+          <img src="https://media.istockphoto.com/id/1417080439/photo/water-drop-splash-on-the-blue-background.jpg?s=1024x1024&w=is&k=20&c=tt1RQVN97eYLRMSPRbE7HPVZRf-cnQ6DX1R_po_hLJI=" alt="Anon's logo"  className="header-logo-img"/>
         </a>
 
-        <ul className="navbar-list">
+        <div className="header-search-container">
 
-          <li className="navbar-item">
-            <a href="#" className="navbar-link">Home</a>
-          </li>
+          <input type="search" name="search" className="search-field" placeholder="Enter your product name..."/>
 
-          <li className="navbar-item">
-            <a href="#" className="navbar-link">About</a>
-          </li>
+          <button className="search-btn" style={{background:"none"}}>
+          <img width="15" height="15" src="https://img.icons8.com/ios/50/search--v1.png" alt="search--v1"/>          </button>
 
-          <li className="navbar-item">
-            <a href="#" className="navbar-link">Products</a>
-          </li>
+        </div>
 
-          <li className="navbar-item">
-            <a href="#" className="navbar-link">Shop</a>
-          </li>
+        <div className="header-user-actions">
 
-          <li className="navbar-item">
-            <a href="#" className="navbar-link">Blog</a>
-          </li>
+          <button className="action-btn">
+          <img width="40" height="40" src="https://img.icons8.com/pastel-glyph/64/person-male--v2.png" alt="person-male--v2"/>
+          </button>
 
-          <li className="navbar-item">
-            <a href="#" className="navbar-link">Contact</a>
-          </li>
+          <button className="action-btn">
+          <img width="30" height="30" src="https://img.icons8.com/ios/30/like--v1.png" alt="like--v1"/>
+            <span className="count">0</span>
+          </button>
 
-        </ul>
+          <button className="action-btn">
+          <img width="30" height="30" src="https://img.icons8.com/ios/30/bag-front-view.png" alt="bag-front-view"/>     
+            <span className="count">0</span>
+          </button>
 
-        <ul className="nav-action-list">
+        </div>
 
-          <li>
-            <button className="nav-action-btn">
-            <img width="30" height="30" src="https://img.icons8.com/ios/30/search--v1.png" alt="search--v1"/>
-              <span className="nav-action-text">Search</span>
-            </button>
-          </li>
-
-          <li>
-            <a href="#" className="nav-action-btn">
-            <img width="40" height="40" src="https://img.icons8.com/pastel-glyph/64/person-male--v2.png" alt="person-male--v2"/>
-              <span className="nav-action-text">Login / Register</span>
-            </a>
-          </li>
-
-          <li>
-            <button className="nav-action-btn">
-            <img width="30" height="30" src="https://img.icons8.com/ios/30/like--v1.png" alt="like--v1"/>
-              <span className="nav-action-text">Wishlist</span>
-
-              <data className="nav-action-badge" value="5" aria-hidden="true">5</data>
-            </button>
-          </li>
-
-          <li>
-            <button className="nav-action-btn">
-            <img width="30" height="30" src="https://img.icons8.com/ios/30/bag-front-view.png" alt="bag-front-view"/>              <data className="nav-action-text" value="318.00">Basket: <strong>$318.00</strong></data>
-
-              <data className="nav-action-badge" value="4" aria-hidden="true">4</data>
-            </button>
-          </li>
-
-        </ul>
-
-      </nav>
+      </div>
 
     </div>
-  </header>
 
     )
 }

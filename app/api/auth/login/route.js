@@ -9,7 +9,8 @@ const {  username,
     await connectToDB();
     try{
         const userdata =await UserModel.findOne({username:username});
-        console.log("data")
+        
+        console.log(userdata,username)
    if(userdata){
 if(userdata.password==password){
     return NextResponse.json({ status: 200, error: "Login Successfully",type:userdata.type });

@@ -26,7 +26,7 @@ export default function Page() {
     
     const handleLogin=async(e:any)=>{
         e.preventDefault()
-        const res = await fetch(`http://localhost:3000/api/auth/login`, {
+        const res = await fetch(`http://192.168.31.156:3000/api/auth/login`, {
             method: "POST",
             headers: {
               Accept: "application/json",
@@ -48,7 +48,7 @@ export default function Page() {
     } 
     const handleSignUp=async(e:any)=>{
         e.preventDefault()
-        const res = await fetch(`api/auth/signup`, {
+        const res = await fetch(`http://192.168.31.156:3000/api/auth/signup`, {
             method: "POST",
             headers: {
               Accept: "application/json",
