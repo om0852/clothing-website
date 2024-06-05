@@ -20,6 +20,12 @@ price:{
 rating:{
     type:Array,
     default:[0,0,0,0,0]
+},
+size:{
+    type:Array,
+},
+discount:{
+    type:Number
 }
 });
 const BannerModel=models.BannerDetails || model("BannerDetails",BannerModels);
