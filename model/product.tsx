@@ -14,7 +14,7 @@ description:{
     required:true
 },
 price:{
-    type:String,
+    type:Number,
     required:true
 },
 rating:{
@@ -26,7 +26,10 @@ size:{
 },
 discount:{
     type:Number
+},
+productType:{
+    type:String
 }
 });
-const BannerModel=models.BannerDetails || model("BannerDetails",BannerModels);
-export default BannerModel;
+const ProductModel=models.Product || model("Product",BannerModels);
+export default ProductModel;
