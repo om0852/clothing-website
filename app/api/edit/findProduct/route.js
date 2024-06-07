@@ -3,8 +3,10 @@ import { NextResponse } from 'next/server';
 import connectDB from "@/utils/db"
 export async function POST(req, res) {
 connectDB();
-    try{
-    const data = await ProductModel.find();
+const body = await req.json();
+try{
+        console.log(body.id);
+    const data = await ProductModel.findOne({_id:body.id});
     return NextResponse.json({ status: 200, error: "retrive Successfully",data:data});
 
 }catch(error){
