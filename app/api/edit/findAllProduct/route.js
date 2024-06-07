@@ -4,6 +4,7 @@ import connectDB from "@/utils/db"
 export async function POST(req, res) {
 connectDB();
     try{
+        console.log("find")
     const data = await ProductModel.find();
     return NextResponse.json({ status: 200, error: "retrive Successfully",data:data});
 

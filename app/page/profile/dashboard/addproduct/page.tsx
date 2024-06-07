@@ -1,10 +1,13 @@
 "use client"
 import { useState } from "react"
 import "../dashboard.css"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Header from "@/app/component/Header";
 
 export default function Page() {
     interface productSchema {
-        img: string,
+        img: [...string],
         title: string,
         description: string,
         price: number,
@@ -14,15 +17,127 @@ export default function Page() {
         productType: string
     }
     const [productData, setProductData] = useState<productSchema>({
-        img: "",
+        img: [],
         title: "",
         description: "",
         price: 0,
         rating: [],
-        size: [''],
+        size: [],
         discount: 0,
-        productType: ""
+        productType: "All"
     });
+
+const handleAddProduct=async()=>{
+    if(productData.img.length==0){
+        toast.error('Add Atleast One Image', {
+            position: "top-center",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });    }
+    else if(productData.title==""){
+        toast.error('Enter  Product Name', {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+    }
+    else if(productData.description==""){
+        toast.error('Enter  Product description', {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+    }
+    else if(productData.price==0){
+        toast.error('Enter Product Price', {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+    }
+    else if(productData.size.length==0){
+        toast.error('Select Product Size', {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+    }
+    else if(productData.productType==""){
+        toast.error('Select Product Type', {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+    }
+    else{
+
+        const res = await fetch(`http://localhost:3000/api/edit/addProduct`, {
+            method: "POST",
+            headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(productData),
+    });
+        const response=await res.json();
+        if(response.status==200){
+            toast.success(' Product Add Successfully', {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
+        }
+        else{
+            toast.error('Check Internet Connection', {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
+        }
+   
+}
+}
+
     const handleAddSize = (e:any) => {
 if(e.target.checked==true){
     productData.size.push(e.target.name);
@@ -34,9 +149,11 @@ if(e.target.checked==true){
 }
     }
     const handleSetData = (e:any) => {
+
         const name = e.target.name;
         const value = e.target.value;
         setProductData(prev => ({ ...prev, [name]: value }));
+        console.log(productData)
     }
     const handlePic = async (e) => {
         const filedata = e.target.files[0];
@@ -52,8 +169,8 @@ if(e.target.checked==true){
         })
             .then((res) => {
                 res.json().then((data) => {
-                    console.log(data.url);
-                    setProductData(prev=>({...prev,img:data.url}));
+                    productData.img.push(data.url)
+                    setProductData(prev=>({...prev,img:productData.img}));
                 })
             }).catch((error) => {
                 console.log(error);
@@ -62,13 +179,24 @@ if(e.target.checked==true){
     return (
         <>
             <div className="addproduct-container">
-                <div className="addproduct-title">Add Product</div>
+                <ToastContainer/>
+                <Header/>
                 <div className="addproduct-form-container">
 
 
                     <div className="addproduct-form">
-{                        productData.img && <img width={"30"} height={"30"} src={productData.img}/>
-}                    <div style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
+                    <div className="addproduct-title" style={{marginBottom:10}}>Add Product</div>
+
+                        <div style={{display:"flex",alignItems:"center",justifyContent:"space-around"}}>
+{                        productData.img && productData.img.map((data,index)=>{
+return(
+    <img onDoubleClick={(e)=>{productData.img.splice(index,1);                    setProductData(prev=>({...prev,img:productData.img}));
+}} width={"40"} height={"40"} src={data}/>
+)
+})
+}   
+</div>
+                 <div style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
 
 <label style={{width:"45vh",
     height:"8vh",
@@ -80,19 +208,20 @@ if(e.target.checked==true){
     marginTop:"4vh"
 }} htmlFor="uploadimg">Upload Product Image</label>
 <input onChange={handlePic} hidden id="uploadimg" type="file" accept="image/*" />
-    </div>
+</div>
 
                             <div className="input-container">
                                 <h3>Product Name:</h3>
-                                <input name="title" onChange={(e) => handleSetData} className="addproduct-input" />
+                                <input name="title" onChange={(e) => handleSetData(e)} className="addproduct-input" />
                             </div>
                             <div className="input-container">
                                 <h3>Product Description:</h3>
-                                <input name="description" onChange={(e) => handleSetData} className="addproduct-input" />
+                                <input name="description" onChange={(e) => handleSetData(e)} className="addproduct-input" />
                             </div>
                             <div className="input-container">
                                 <h3>Product Type:</h3>
                                 <select name="productType" onChange={handleSetData} className="addproduct-input">
+                                    <option>All</option>
                                     <option>Mens</option>
                                     <option>Womens</option>
                                     <option>Kids</option>
@@ -110,11 +239,11 @@ if(e.target.checked==true){
                             </div>
                             <div className="input-container">
                                 <h3>Product Discount:</h3>
-                                <input type="number" className="addproduct-input" />
+                                <input onChange={handleSetData} type="number" name="discount" className="addproduct-input" />
                             </div>
                             <div className="input-container">
                                 <h3>Product Price:</h3>
-                                <input type="number" className="addproduct-input" />
+                                <input onChange={handleSetData} type="number" name="price" className="addproduct-input" />
                             </div>
                             <div>
                                 <button style={{width:"45vh",
@@ -125,7 +254,7 @@ if(e.target.checked==true){
     background:"green",
     color:"white",
     marginTop:"4vh"
-}}>Add Product</button>
+}} onClick={handleAddProduct}>Add Product</button>
                             </div>
                                 </div>
                 </div>

@@ -8,6 +8,8 @@ import CategoryHeader from "./component/CategoryHeader";
 import CategorySection from "./component/CategorySection";
 import HomeSection from "./component/HomeSection";
 import DealOfTheDay from "./component/DealOfTheDay";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import BottomHeader from "./component/BottomHeader";
 
 export default function Home() {
@@ -23,6 +25,18 @@ if(localStorage.getItem("login")=="true"){
   return (
   <div>
 <Header/>
+<ToastContainer
+position="top-center"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="light"
+/>
 <BottomHeader/>
 <CategoryHeader/>
 <Slider/>

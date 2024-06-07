@@ -2,9 +2,11 @@ import {Schema, model, models} from 'mongoose';
 
 const BannerModels=new Schema({
 img:{
-    type:String,
+    type:Array,
     required:true
 },
+
+
 title:{
     type:String,
     required:true

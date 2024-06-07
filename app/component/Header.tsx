@@ -10,7 +10,7 @@ export default function Header(){
       <div className="header-container">
 
         <a href="#" className="header-logo">
-          <img src="https://media.istockphoto.com/id/1417080439/photo/water-drop-splash-on-the-blue-background.jpg?s=1024x1024&w=is&k=20&c=tt1RQVN97eYLRMSPRbE7HPVZRf-cnQ6DX1R_po_hLJI=" alt="Anon's logo"  className="header-logo-img"/>
+          <img width={50} height={50} src="https://media.istockphoto.com/id/1417080439/photo/water-drop-splash-on-the-blue-background.jpg?s=1024x1024&w=is&k=20&c=tt1RQVN97eYLRMSPRbE7HPVZRf-cnQ6DX1R_po_hLJI=" alt="Anon's logo"  className="header-logo-img"/>
         </a>
 
         <div className="header-search-container">
