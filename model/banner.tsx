@@ -13,10 +13,7 @@ description:{
     type:String,
     required:true
 },
-link:{
-    type:String,
-    required:true
-},
+
 });
 const BannerModel=models.BannerDetails || model("BannerDetails",BannerModels);
 export default BannerModel;

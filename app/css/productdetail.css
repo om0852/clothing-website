@@ -1,0 +1,12 @@
+.product-detail-container{
+    width: 100%;
+    height: 100%;
+}
+
+.product-images
+{
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+}

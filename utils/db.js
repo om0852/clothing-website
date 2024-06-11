@@ -12,28 +12,25 @@ if (!cached) {
 }
 
 const connectToDB = async () => {
-  if (cached.conn) {
-    return cached.conn;
-  }
-
-  if (!cached.promise) {
-    const opts = {
-      bufferCommands: false,
+  try {
+    // Options for the MongoDB connection
+    const options = {
+      // Add any other options as needed
     };
 
-    cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
-      return mongoose.connection;
-    });
-  }
+    // Connect to MongoDB
+    await mongoose.connect(MONGODB_URI, options);
 
-  try {
-    cached.conn = await cached.promise;
-  } catch (e) {
-    cached.promise = null;
-    throw e;
-  }
+    // Connection successful
+    console.log('Connected to MongoDB');
 
-  return cached.conn;
+    // Return the Mongoose connection object
+    return mongoose.connection;
+  } catch (error) {
+    // Connection failed
+    console.error('Error connecting to MongoDB:', error);
+    throw error; // Rethrow the error for handling in the caller
+  }
 };
 
 export default connectToDB;

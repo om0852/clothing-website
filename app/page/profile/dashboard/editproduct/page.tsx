@@ -7,16 +7,16 @@ import 'bootstrap/dist/css/bootstrap.css'
 import EditProductCard from "@/app/component/card/EditProductCard";
 export default function Page(){
     interface productSchema {
-        img: [...string],
+        img: string[],
         title: string,
         description: string,
         price: number,
         rating: [],
-        size: [...string],
+        size: string[],
         discount: number,
         productType: string
     }
-    const [productData,setProductData]=useState<[productSchema]>([]);
+    const [productData,setProductData]=useState<[]>([]);
 const fetchProductData=async()=>{
     
     const res = await fetch(`http://localhost:3000/api/edit/findAllProduct`, {

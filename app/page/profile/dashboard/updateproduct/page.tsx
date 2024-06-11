@@ -7,12 +7,12 @@ import Header from "@/app/component/Header";
 
 export default function Page() {
     interface productSchema {
-        img: [...string],
+        img: string[],
         title: string,
         description: string,
         price: number,
         rating: [],
-        size: [...string],
+        size: string[],
         discount: number,
         productType: string
     }
@@ -179,7 +179,7 @@ if(e.target.checked==true){
         setProductData(prev => ({ ...prev, [name]: value }));
         console.log(productData)
     }
-    const handlePic = async (e) => {
+    const handlePic = async (e:any) => {
         const filedata = e.target.files[0];
         console.log(e.target.files[0])
         const data = new FormData();
