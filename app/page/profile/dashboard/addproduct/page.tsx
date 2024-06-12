@@ -155,7 +155,7 @@ if(e.target.checked==true){
         setProductData(prev => ({ ...prev, [name]: value }));
         console.log(productData)
     }
-    const handlePic = async (e) => {
+    const handlePic = async (e:any) => {
         const filedata = e.target.files[0];
         console.log(e.target.files[0])
         const data = new FormData();
@@ -179,7 +179,6 @@ if(e.target.checked==true){
     return (
         <>
             <div className="addproduct-container">
-                <ToastContainer/>
                 <Header/>
                 <div className="addproduct-form-container">
 

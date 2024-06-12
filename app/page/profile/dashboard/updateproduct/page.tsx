@@ -203,7 +203,6 @@ if(e.target.checked==true){
     return (
         <>
             <div className="addproduct-container">
-                <ToastContainer/>
                 <Header/>
                 <div className="addproduct-form-container">
 

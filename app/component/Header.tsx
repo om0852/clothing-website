@@ -1,12 +1,16 @@
 import { useRouter } from "next/navigation"
 import "../css/component.css"
+import 'react-toastify/dist/ReactToastify.css';
+
+import { ToastContainer, toast } from 'react-toastify';
+
 
 
 export default function Header(){
   const router =useRouter();
     return(
       <div className="header-main">
-
+<ToastContainer/>
       <div className="header-container">
 
         <a href="#" className="header-logo">
