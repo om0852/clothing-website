@@ -1,9 +1,49 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import "../css/component.css"
 import loginimg from "../img/Login & Registration Form.png"
 import Script from "next/script"
 import Link from "next/link";
+import { ToastContainer, toast } from 'react-toastify';
+
 export default function Slider(){
+  interface BannerData{
+    _id:string,
+    img:string,
+    title:string,
+    description:string
+  }
+const [bannerData,setBannerData]=useState<BannerData[]>([]);
+const fetchProductData=async()=>{
+    
+  const res = await fetch(`http://localhost:3000/api/edit/Banner/findBanner`, {
+      method: "POST",
+      headers: {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({}),
+});
+  const response=await res.json();
+  if(response.status==200){
+      setBannerData(response.data)
+      
+  }
+  else{
+      toast.error('Check Internet Connection ', {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
+  }
+}
+useEffect(()=>{
+  fetchProductData()
+},[]);
 
       return (
         <>
@@ -13,67 +53,29 @@ export default function Slider(){
       <div className="container">
 
         <div className="slider-container has-scrollbar">
+{bannerData.map((data)=>{
+return(
 
-          <div className="slider-item">
+  
+  <div className="slider-item">
 
-            <img src={loginimg.src} alt="women's latest fashion sale" className="banner-img"/>
+            <img src={data.img} alt="women's latest fashion sale" className="banner-img"/>
 
             <div className="banner-content">
 
-              <p className="banner-subtitle">Trending item</p>
+              <p className="banner-subtitle">{data.title}</p>
 
-              <h2 className="banner-title">Women's latest fashion sale</h2>
+              <h2 className="banner-title">{data.description}</h2>
 
-              <p className="banner-text">
-                starting at &dollar; <b>20</b>.00
-              </p>
-
-              <a href="#" className="banner-btn">Shop now</a>
 
             </div>
 
           </div>
+      )
+        })  
+        }
 
-          <div className="slider-item">
-
-            <img src={loginimg.src} alt="modern sunglasses" className="banner-img"/>
-
-            <div className="banner-content">
-
-              <p className="banner-subtitle">Trending accessories</p>
-
-              <h2 className="banner-title">Modern sunglasses</h2>
-
-              <p className="banner-text">
-                starting at &dollar; <b>15</b>.00
-              </p>
-
-              <a href="#" className="banner-btn">Shop now</a>
-
-            </div>
-
-          </div>
-
-          <div className="slider-item">
-
-            <img src={loginimg.src} alt="new fashion summer sale" className="banner-img"/>
-
-            <div className="banner-content">
-
-              <p className="banner-subtitle">Sale Offer</p>
-
-              <h2 className="banner-title">New fashion summer sale</h2>
-
-              <p className="banner-text">
-                starting at &dollar; <b>29</b>.99
-              </p>
-
-              <a href="#" className="banner-btn">Shop now</a>
-
-            </div>
-
-          </div>
-
+        
         </div>
 
       </div>

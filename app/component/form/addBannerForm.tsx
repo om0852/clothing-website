@@ -94,7 +94,7 @@ const handleOnChange=(e:any)=>{
                         boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
                     }}
                 >
-                    Banner Form
+                   Add Banner Form
                 </p>
                 <div style={{ display: "grid", placeItems: "center" }}>
 {bannerData.img &&                    <img style={{marginTop:"2vh"}} src={bannerData.img} width={50} height={50} alt="Banner" />
@@ -108,7 +108,7 @@ const handleOnChange=(e:any)=>{
                             background: "red",
                             color: "white",
                             marginTop: "4vh",
-                        }}
+                        }}      
                         htmlFor="uploadimg"
                     >
                         Upload Product Image
@@ -135,7 +135,7 @@ onChange={handleOnChange}
                 </div>
                 <div className="banner-btn-container">
 
-<button onClick={(e)=>updateBanner()} className="update-btn">Update</button>
+<button onClick={(e)=>updateBanner()} className="update-btn">Add</button>
 <button  className="delete-btn" onClick={(e)=>setAddState(false)}>Cancel</button>
     </div>
              </div>
