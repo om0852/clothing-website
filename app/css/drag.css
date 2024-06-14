@@ -10,3 +10,15 @@
 .hide-drop{
     opacity: 0;
 }
+.card-section{
+    width: 45%;
+    height: 100vh;
+    background-color: red;
+
+}
+.card-section-scroll{
+    width: 100%;
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}

@@ -1,5 +1,5 @@
-export default function DraggableCard({index,setActiveCard}:{index:number,setActiveCard:any}){
+export default function DraggableCard({index,data,setActiveCard}:{index:number,data:string,setActiveCard:any}){
     return (
-        <div draggable onDragStart={(e)=>setActiveCard(index)} onDragEnd={(e)=>setActiveCard(null)} style={{width:"40vh",height:"40vh",background:"green"}}>{index}</div>
+        <div draggable  onDragStart={(e)=>setActiveCard(index)} onDragEnd={(e)=>setActiveCard(null)} style={{width:"30vh",height:"30vh",background:"green"}}>{data}</div>
     )
 }
