@@ -9,6 +9,7 @@
 }
 .hide-drop{
     opacity: 0;
+    height: 0;
 }
 .card-section{
     width: 45%;
