@@ -1,11 +1,11 @@
-export default function DealOfTheDayCard(){
+export default function DealOfTheDayCard({data}:any){
     return(
         <div className="showcase-container">
 
         <div className="showcase">
           
           <div className="showcase-banner">
-            <img src="./assets/images/products/shampoo.jpg" alt="shampoo, conditioner & facewash packs" className="showcase-img"/>
+            <img src={data.img} alt="shampoo, conditioner & facewash packs" className="showcase-img"/>
           </div>
 
           <div className="showcase-content">
@@ -19,36 +19,22 @@ export default function DealOfTheDayCard(){
             </div>
 
             <a href="#">
-              <h3 className="showcase-title">shampoo, conditioner & facewash packs</h3>
+              <h3 className="showcase-title">{data.title}</h3>
             </a>
 
             <p className="showcase-desc">
-              Lorem ipsum dolor sit amet consectetur Lorem ipsum
-              dolor dolor sit amet consectetur Lorem ipsum dolor
+              {data.description}
             </p>
 
             <div className="price-box">
-              <p className="price">$150.00</p>
+              <p className="price">{data.price}</p>
 
-              <del>$200.00</del>
+              <del>${data.discount}</del>
             </div>
 
             <button className="add-cart-btn">add to cart</button>
 
-            <div className="showcase-status">
-              <div className="wrapper">
-                <p>
-                  already sold: <b>20</b>
-                </p>
-
-                <p>
-                  available: <b>40</b>
-                </p>
-              </div>
-
-              <div className="showcase-status-bar"></div>
-            </div>
-
+          
             <div className="countdown-box">
 
               <p className="countdown-desc">
@@ -59,14 +45,19 @@ export default function DealOfTheDayCard(){
 
                 <div className="countdown-content">
 
-                  <p className="display-number">360</p>
+                  <p className="display-number">{data.date[0].split("-")[2]}</p>
 
                   <p className="display-text">Days</p>
 
                 </div>
 
                 <div className="countdown-content">
-                  <p className="display-number">24</p>
+                  <p className="display-number">{data.date[0].split("-")[1]}</p>
+                  <p className="display-text">Months</p>
+                </div>
+
+                <div className="countdown-content">
+                  <p className="display-number">12</p>
                   <p className="display-text">Hours</p>
                 </div>
 
