@@ -1,4 +1,28 @@
+"use client"
+import { useEffect, useState } from "react";
+import TrendingCard from "./card/TrendingCard";
 export default function HomeSection(){
+  const [productData,setProductData]=useState<[]>([]);
+  const [productData1,setProductData1]=useState<[]>([]);
+  useEffect(()=>{
+    fetchProductData();
+  },[])
+  const fetchProductData=async()=>{
+    
+    const res = await fetch(`http://localhost:3000/api/fetch/trending`, {
+        method: "POST",
+        headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+});
+    const response=await res.json();
+    if(response.status==200){
+      setProductData(response.data)
+      console.log(response.data2)
+      setProductData1(response.data2)
+    }
+}
     return (
 
 
@@ -11,200 +35,16 @@ export default function HomeSection(){
               <div className="showcase-wrapper has-scrollbar">
 
                 <div className="showcase-container">
-
-                  <div className="showcase">
-
-                    <a href="#" className="showcase-img-box">
-                      <img src="./assets/images/products/clothes-1.jpg" alt="relaxed short full sleeve t-shirt" width="70" className="showcase-img"/>
-                    </a>
-
-                    <div className="showcase-content">
-
-                      <a href="#">
-                        <h4 className="showcase-title">Relaxed Short full Sleeve T-Shirt</h4>
-                      </a>
-
-                      <a href="#" className="showcase-category">Clothes</a>
-
-                      <div className="price-box">
-                        <p className="price">$45.00</p>
-                        <del>$12.00</del>
-                      </div>
-
-                    </div>
-
-                  </div>
-
-                  <div className="showcase">
-                  
-                    <a href="#" className="showcase-img-box">
-                      <img src="./assets/images/products/clothes-2.jpg" alt="girls pink embro design top" className="showcase-img" width="70"/>
-                    </a>
-                  
-                    <div className="showcase-content">
-                  
-                      <a href="#">
-                        <h4 className="showcase-title">Girls pnk Embro design Top</h4>
-                      </a>
-                  
-                      <a href="#" className="showcase-category">Clothes</a>
-                  
-                      <div className="price-box">
-                        <p className="price">$61.00</p>
-                        <del>$9.00</del>
-                      </div>
-                  
-                    </div>
-                  
-                  </div>
-
-                  <div className="showcase">
-                  
-                    <a href="#" className="showcase-img-box">
-                      <img src="./assets/images/products/clothes-3.jpg" alt="black floral wrap midi skirt" className="showcase-img"
-                        width="70"/>
-                    </a>
-                  
-                    <div className="showcase-content">
-                  
-                      <a href="#">
-                        <h4 className="showcase-title">Black Floral Wrap Midi Skirt</h4>
-                      </a>
-                  
-                      <a href="#" className="showcase-category">Clothes</a>
-                  
-                      <div className="price-box">
-                        <p className="price">$76.00</p>
-                        <del>$25.00</del>
-                      </div>
-                  
-                    </div>
-                  
-                  </div>
-
-                  <div className="showcase">
-                  
-                    <a href="#" className="showcase-img-box">
-                      <img src="./assets/images/products/shirt-1.jpg" alt="pure garment dyed cotton shirt" className="showcase-img"
-                        width="70"/>
-                    </a>
-                  
-                    <div className="showcase-content">
-                  
-                      <a href="#">
-                        <h4 className="showcase-title">Pure Garment Dyed Cotton Shirt</h4>
-                      </a>
-                  
-                      <a href="#" className="showcase-category">Mens Fashion</a>
-                  
-                      <div className="price-box">
-                        <p className="price">$68.00</p>
-                        <del>$31.00</del>
-                      </div>
-                  
-                    </div>
-                  
-                  </div>
-
-                </div>
-
-                <div className="showcase-container">
+{
+  productData1.map((data,index)=>{
+    return(
+<>
+      <TrendingCard data={data}/>
+</>
+    )
+  })
+}
                 
-                  <div className="showcase">
-                
-                    <a href="#" className="showcase-img-box">
-                      <img src="./assets/images/products/jacket-5.jpg" alt="men yarn fleece full-zip jacket" className="showcase-img"
-                        width="70"/>
-                    </a>
-                
-                    <div className="showcase-content">
-                
-                      <a href="#">
-                        <h4 className="showcase-title">MEN Yarn Fleece Full-Zip Jacket</h4>
-                      </a>
-                
-                      <a href="#" className="showcase-category">Winter wear</a>
-                
-                      <div className="price-box">
-                        <p className="price">$61.00</p>
-                        <del>$11.00</del>
-                      </div>
-                
-                    </div>
-                
-                  </div>
-                
-                  <div className="showcase">
-                
-                    <a href="#" className="showcase-img-box">
-                      <img src="./assets/images/products/jacket-1.jpg" alt="mens winter leathers jackets" className="showcase-img"
-                        width="70"/>
-                    </a>
-                
-                    <div className="showcase-content">
-                
-                      <a href="#">
-                        <h4 className="showcase-title">Mens Winter Leathers Jackets</h4>
-                      </a>
-                
-                      <a href="#" className="showcase-category">Winter wear</a>
-                
-                      <div className="price-box">
-                        <p className="price">$32.00</p>
-                        <del>$20.00</del>
-                      </div>
-                
-                    </div>
-                
-                  </div>
-                
-                  <div className="showcase">
-                
-                    <a href="#" className="showcase-img-box">
-                      <img src="./assets/images/products/jacket-3.jpg" alt="mens winter leathers jackets" className="showcase-img"
-                        width="70"/>
-                    </a>
-                
-                    <div className="showcase-content">
-                
-                      <a href="#">
-                        <h4 className="showcase-title">Mens Winter Leathers Jackets</h4>
-                      </a>
-                
-                      <a href="#" className="showcase-category">Jackets</a>
-                
-                      <div className="price-box">
-                        <p className="price">$50.00</p>
-                        <del>$25.00</del>
-                      </div>
-                
-                    </div>
-                
-                  </div>
-                
-                  <div className="showcase">
-                
-                    <a href="#" className="showcase-img-box">
-                      <img src="./assets/images/products/shorts-1.jpg" alt="better basics french terry sweatshorts" className="showcase-img"
-                        width="70"/>
-                    </a>
-                
-                    <div className="showcase-content">
-                
-                      <a href="#">
-                        <h4 className="showcase-title">Better Basics French Terry Sweatshorts</h4>
-                      </a>
-                
-                      <a href="#" className="showcase-category">Shorts</a>
-                
-                      <div className="price-box">
-                        <p className="price">$20.00</p>
-                        <del>$10.00</del>
-                      </div>
-                
-                    </div>
-                
-                  </div>
                 
                 </div>
 
@@ -220,201 +60,15 @@ export default function HomeSection(){
             
                 <div className="showcase-container">
             
-                  <div className="showcase">
-            
-                    <a href="#" className="showcase-img-box">
-                      <img src="./assets/images/products/sports-1.jpg" alt="running & trekking shoes - white" className="showcase-img"
-                        width="70"/>
-                    </a>
-            
-                    <div className="showcase-content">
-            
-                      <a href="#">
-                        <h4 className="showcase-title">Running & Trekking Shoes - White</h4>
-                      </a>
-            
-                      <a href="#" className="showcase-category">Sports</a>
-            
-                      <div className="price-box">
-                        <p className="price">$49.00</p>
-                        <del>$15.00</del>
-                      </div>
-            
-                    </div>
-            
-                  </div>
-            
-                  <div className="showcase">
-            
-                    <a href="#" className="showcase-img-box">
-                      <img src="./assets/images/products/sports-2.jpg" alt="trekking & running shoes - black" className="showcase-img"
-                        width="70"/>
-                    </a>
-            
-                    <div className="showcase-content">
-            
-                      <a href="#">
-                        <h4 className="showcase-title">Trekking & Running Shoes - black</h4>
-                      </a>
-            
-                      <a href="#" className="showcase-category">Sports</a>
-            
-                      <div className="price-box">
-                        <p className="price">$78.00</p>
-                        <del>$36.00</del>
-                      </div>
-            
-                    </div>
-            
-                  </div>
-            
-                  <div className="showcase">
-            
-                    <a href="#" className="showcase-img-box">
-                      <img src="./assets/images/products/party-wear-1.jpg" alt="womens party wear shoes" className="showcase-img"
-                        width="70"/>
-                    </a>
-            
-                    <div className="showcase-content">
-            
-                      <a href="#">
-                        <h4 className="showcase-title">Womens Party Wear Shoes</h4>
-                      </a>
-            
-                      <a href="#" className="showcase-category">Party wear</a>
-            
-                      <div className="price-box">
-                        <p className="price">$94.00</p>
-                        <del>$42.00</del>
-                      </div>
-            
-                    </div>
-            
-                  </div>
-            
-                  <div className="showcase">
-            
-                    <a href="#" className="showcase-img-box">
-                      <img src="./assets/images/products/sports-3.jpg" alt="sports claw women's shoes" className="showcase-img"
-                        width="70"/>
-                    </a>
-            
-                    <div className="showcase-content">
-            
-                      <a href="#">
-                        <h4 className="showcase-title">Sports Claw Women's Shoes</h4>
-                      </a>
-            
-                      <a href="#" className="showcase-category">Sports</a>
-            
-                      <div className="price-box">
-                        <p className="price">$54.00</p>
-                        <del>$65.00</del>
-                      </div>
-            
-                    </div>
-            
-                  </div>
-            
-                </div>
-            
-                <div className="showcase-container">
-            
-                  <div className="showcase">
-            
-                    <a href="#" className="showcase-img-box">
-                      <img src="./assets/images/products/sports-6.jpg" alt="air tekking shoes - white" className="showcase-img"
-                        width="70"/>
-                    </a>
-            
-                    <div className="showcase-content">
-            
-                      <a href="#">
-                        <h4 className="showcase-title">Air Trekking Shoes - white</h4>
-                      </a>
-            
-                      <a href="#" className="showcase-category">Sports</a>
-            
-                      <div className="price-box">
-                        <p className="price">$52.00</p>
-                        <del>$55.00</del>
-                      </div>
-            
-                    </div>
-            
-                  </div>
-            
-                  <div className="showcase">
-            
-                    <a href="#" className="showcase-img-box">
-                      <img src="./assets/images/products/shoe-3.jpg" alt="Boot With Suede Detail" className="showcase-img" width="70"/>
-                    </a>
-            
-                    <div className="showcase-content">
-            
-                      <a href="#">
-                        <h4 className="showcase-title">Boot With Suede Detail</h4>
-                      </a>
-            
-                      <a href="#" className="showcase-category">boots</a>
-            
-                      <div className="price-box">
-                        <p className="price">$20.00</p>
-                        <del>$30.00</del>
-                      </div>
-            
-                    </div>
-            
-                  </div>
-            
-                  <div className="showcase">
-            
-                    <a href="#" className="showcase-img-box">
-                      <img src="./assets/images/products/shoe-1.jpg" alt="men's leather formal wear shoes" className="showcase-img"
-                        width="70"/>
-                    </a>
-            
-                    <div className="showcase-content">
-            
-                      <a href="#">
-                        <h4 className="showcase-title">Men's Leather Formal Wear shoes</h4>
-                      </a>
-            
-                      <a href="#" className="showcase-category">formal</a>
-            
-                      <div className="price-box">
-                        <p className="price">$56.00</p>
-                        <del>$78.00</del>
-                      </div>
-            
-                    </div>
-            
-                  </div>
-            
-                  <div className="showcase">
-            
-                    <a href="#" className="showcase-img-box">
-                      <img src="./assets/images/products/shoe-2.jpg" alt="casual men's brown shoes" className="showcase-img" width="70"/>
-                    </a>
-            
-                    <div className="showcase-content">
-            
-                      <a href="#">
-                        <h4 className="showcase-title">Casual Men's Brown shoes</h4>
-                      </a>
-            
-                      <a href="#" className="showcase-category">Casual</a>
-            
-                      <div className="price-box">
-                        <p className="price">$50.00</p>
-                        <del>$55.00</del>
-                      </div>
-            
-                    </div>
-            
-                  </div>
-            
-                </div>
+{
+  productData.map((data)=>{
+    return(
+      <>
+      <TrendingCard data={data}/>
+      </>
+    )
+  })
+}                </div>
             
               </div>
             
