@@ -26,7 +26,6 @@ const fetchProductData=async()=>{
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({}),
 });
     const response=await res.json();
     setMyTask(response.data)
@@ -101,6 +100,19 @@ if(response.status==200){
         progress: undefined,
         theme: "light",
         });
+        }
+        else{
+            toast.error('Something Went Wrong!', {
+                position: "top-center",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
+            
 }
     }
     return(

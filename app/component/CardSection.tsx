@@ -15,10 +15,12 @@ export default function CardSection({
 }:any) {
     const [searchTerm, setSearchTerm] = useState("");
     const [filteredData, setFilteredData] = useState(productData);
-
+useEffect(()=>{
+console.log(productData)
+    },[productData])
     useEffect(() => {
         setFilteredData(
-          productData &&  productData.filter(data => 
+         productData.filter(data => 
                 data._id.toLowerCase().includes(searchTerm.toLowerCase())
             )
         );

@@ -15,7 +15,7 @@ await connectDB();
         }
     });
     arr=arr.filter((item)=>item!=null);
-    return NextResponse.json({ status: 200, error: "retrive Successfully",data:data,data2:arr});
+    return NextResponse.json({ status: 200, error: "retrive Successfully",data:arr});
 
 }catch(error){
     console.log(error.message)
