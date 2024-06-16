@@ -18,7 +18,7 @@ Edit Product
         <div onClick={(e)=>{router.push("/page/profile/dashboard/trendingedit")}} style={{width:"100%",height:"10vh",marginTop:"3vh",background:"red"}}>
             Trending Edit
         </div>
-        <div onClick={(e)=>{router.push("/page/profile/dashboard/newarrival")}} style={{width:"100%",height:"10vh",marginTop:"3vh",background:"red"}}>
+        <div onClick={(e)=>{router.push("/page/profile/dashboard/newarrivaledit")}} style={{width:"100%",height:"10vh",marginTop:"3vh",background:"red"}}>
             New Arrival Edit
             
         </div>

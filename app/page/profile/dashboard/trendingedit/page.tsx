@@ -1,4 +1,4 @@
-import DraggableComponent from "@/app/component/DraggableComponent";
+import DraggableComponent from "@/app/component/TrendingDraggableComponent";
 
 export default function Page(){
     return(

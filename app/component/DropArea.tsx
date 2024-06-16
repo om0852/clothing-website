@@ -8,8 +8,7 @@ export default function DropArea({onDropHandle,index,section}:{onDropHandle:any,
         <section 
         onDragEnter={(e)=>{console.log(showDrop);setShowDrop(true)}}
         onDragLeave={(e)=>{console.log(showDrop);setShowDrop(false)}}
-        onDrop={(e)=>{
-            console.log(index)
+        onDrop={()=>{
             onDropHandle(index,section);
             setShowDrop(false);
         }}
